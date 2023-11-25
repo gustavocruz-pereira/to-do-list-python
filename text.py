@@ -1,0 +1,3 @@
+string = "  ."
+
+print(string.isspace())
