@@ -10,7 +10,7 @@ def main():
     def add_button():
         content = txt.get()
         if content.isspace() :
-            messagebox.showerror("Erro", "Você precisa escrever uma tarefa!")
+            messagebox.showerror("Error", "You need to write a to do!")
         elif content:
             lista_to_do.append(content)
         txt.delete(0, tk.END)
@@ -22,7 +22,28 @@ def main():
         for item in lista_to_do:
             listtk.insert(tk.END, item)
 
+    def remove():
+        selected_item = listtk.curselection()
+        if selected_item:
+            try:
+                item = listtk.delete(selected_item)
+                item = lista_to_do[int(selected_item[0])]
+                lista_to_do.remove(item)
+
+                print(f"Deletado o item {item}")
+                lista_to_do.remove()
+            except Exception as e:
+                print(e)
+        else:
+            messagebox.showerror("Error","Select an item to remove!")
+
+
+    def save():
+        ...
     
+    def edit():
+        ...
+
     window = tk.Tk()
     window.title("To do list")
     window.geometry("500x250")
@@ -41,7 +62,7 @@ def main():
     listtk = tk.Listbox(window, selectmode=tk.SINGLE, width=50)
     listtk.grid(row=4, column=0, padx=10)
 
-    btn_remove = tk.Button(window, text="Remove", width=10)
+    btn_remove = tk.Button(window, text="Remove", width=10, command=remove)
     btn_remove.grid(row=6, column=1, padx=5)
     btn_remove.config(bg="red")
 
