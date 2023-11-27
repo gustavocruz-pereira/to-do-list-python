@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
+import os
 lista_to_do = []
 
 
@@ -31,7 +32,6 @@ def main():
                 lista_to_do.remove(item)
 
                 print(f"Deletado o item {item}")
-                lista_to_do.remove()
             except Exception as e:
                 print(e)
         else:
@@ -39,7 +39,9 @@ def main():
 
 
     def save():
-        ...
+        with open("text.txt", "w") as text:
+            for t in lista_to_do:
+                text.write(t + "\n")
     
     def edit():
         ...
@@ -69,7 +71,7 @@ def main():
     btn_edit = tk.Button(window, text="Edit", width=10)
     btn_edit.grid(row=6, column=2, padx=5)
 
-    btn_save = tk.Button(window, text="Save", width=10)
+    btn_save = tk.Button(window, text="Save", width=10, command=save)
     btn_save.grid(row=6, column=0, padx=5)
      
 
