@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 import os
+import time
 lista_to_do = []
 
 
@@ -8,6 +9,9 @@ def main():
     def close_window():
         window.destroy()
 
+    #This method will add what is written on the textbox to the listbox.
+    #If the user dont write and click the button, nothing will be added.
+    #If the user write only spaces, a error message will apear.
     def add_button():
         content = txt.get()
         if content.isspace() :
@@ -42,6 +46,7 @@ def main():
         with open("text.txt", "w") as text:
             for t in lista_to_do:
                 text.write(t + "\n")
+            messagebox.showinfo("Info", "Saved successfully")
     
     def edit():
         ...
